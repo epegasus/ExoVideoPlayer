@@ -1,60 +1,34 @@
 package dev.pegasus.exovideoplayer
 
-import android.net.Uri
+import android.content.Intent
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.media3.common.MediaItem
-import androidx.media3.common.util.UnstableApi
-import androidx.media3.common.util.Util
-import androidx.media3.datasource.DefaultDataSourceFactory
-import androidx.media3.exoplayer.ExoPlayer
-import androidx.media3.exoplayer.source.ProgressiveMediaSource
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import dev.pegasus.exovideoplayer.databinding.ActivityMainBinding
+import dev.pegasus.exovideoplayer.m3u8Player.ActivityM3u8Player
+import dev.pegasus.exovideoplayer.mp4Player.ActivityMp4Player
 
-@UnstableApi
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    private val exoPlayer by lazy { ExoPlayer.Builder(this).build() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setPadding()
 
-        initPlayerNormal()
-        //initPlayerM3U8()
+        binding.mbPlayMp4.setOnClickListener { startActivity(Intent(this, ActivityMp4Player::class.java)) }
+        binding.mbPlayM3u8.setOnClickListener { startActivity(Intent(this, ActivityM3u8Player::class.java)) }
     }
 
-    private fun initPlayerNormal() {
-        binding.playerViewMain.player = exoPlayer
-
-        val videoUri = Uri.parse("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
-        val mediaItem = MediaItem.fromUri(videoUri)
-        exoPlayer.setMediaItem(mediaItem)
-        exoPlayer.prepare()
-        exoPlayer.playWhenReady = true
-    }
-
-    private fun initPlayerM3U8() {
-        binding.playerViewMain.player = exoPlayer
-
-        val videoUri = Uri.parse("https://ythls.onrender.com/channel/UCz2yxQJZgiB_5elTzqV7FiQ.m3u8")
-        val mediaItem = MediaItem.fromUri(videoUri)
-        //val mediaSource = HlsMediaSource.Factory(DefaultDataSourceFactory(this, Util.getUserAgent(this, "app-name"))).createMediaSource(mediaItem)
-        val mediaSource = ProgressiveMediaSource.Factory(DefaultDataSourceFactory(this, Util.getUserAgent(this, "app-name"))).createMediaSource(mediaItem)
-
-        exoPlayer.setMediaSource(mediaSource)
-        exoPlayer.prepare()
-        exoPlayer.playWhenReady = true
-    }
-
-    override fun onPause() {
-        super.onPause()
-        exoPlayer.pause()
-    }
-
-    override fun onDestroy() {
-        exoPlayer.release()
-        super.onDestroy()
+    private fun setPadding() {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
     }
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <drawable name="exo_styled_controls_play" tools:override="true">@drawable/ic_play</drawable>
+    <drawable name="exo_styled_controls_pause" tools:override="true">@drawable/ic_pause_icon</drawable>
+
+    <drawable name="exo_styled_controls_rewind" tools:override="true">@drawable/ic_backward</drawable>
+    <drawable name="exo_styled_controls_fastforward" tools:override="true">@drawable/ic_forward</drawable>
+
+</resources>

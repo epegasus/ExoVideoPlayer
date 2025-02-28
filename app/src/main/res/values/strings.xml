@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">ExoVideoPlayer</string>
+
+
+    <!-- MainActivity -->
+    <string name="exoplayer_sample">ExoPlayer Sample</string>
+    <string name="choose_a_video_format_to_play">Choose a video format to play.</string>
+    <string name="play_mp4_link">Play MP4 Link</string>
+    <string name="play_m3u8_link">Play M3U8 Link</string>
+    <string name="big_buck_bunny_mp4">Big Buck Bunny.mp4</string>
 </resources>
