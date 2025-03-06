@@ -16,14 +16,7 @@
         app:auto_show="true"
         app:controller_layout_id="@layout/player_view_style"
         app:resize_mode="fit"
+        app:show_buffering="always"
         app:use_controller="true" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone"
-        tools:visibility="visible" />
 
 </FrameLayout>

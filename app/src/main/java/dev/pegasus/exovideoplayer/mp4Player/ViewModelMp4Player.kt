@@ -24,9 +24,6 @@ import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
 @UnstableApi
 class ViewModelMp4Player(application: Application) : AndroidViewModel(application) {
 
-    private val _isBuffering = MutableLiveData(false)
-    val isBuffering: LiveData<Boolean> = _isBuffering
-
     private val trackSelector = DefaultTrackSelector(application)
     private var _exoPlayer: ExoPlayer? = null
 
@@ -38,11 +35,6 @@ class ViewModelMp4Player(application: Application) : AndroidViewModel(applicatio
                     .build().apply {
                         playWhenReady = true
                         repeatMode = Player.REPEAT_MODE_ONE
-                        addListener(object : Player.Listener {
-                            override fun onPlaybackStateChanged(state: Int) {
-                                _isBuffering.postValue(state == Player.STATE_BUFFERING)
-                            }
-                        })
                     }
             }
             return _exoPlayer!!

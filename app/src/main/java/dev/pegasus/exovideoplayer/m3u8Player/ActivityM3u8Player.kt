@@ -5,7 +5,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.isVisible
 import androidx.media3.common.MediaItem
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
@@ -56,10 +55,6 @@ class ActivityM3u8Player : AppCompatActivity() {
 
         // ⚡ Auto-reconnect if live stream fails
         exoPlayer.addListener(object : Player.Listener {
-            override fun onPlaybackStateChanged(playbackState: Int) {
-                binding.progressBar.isVisible = playbackState == ExoPlayer.STATE_BUFFERING
-            }
-
             override fun onPlayerError(error: PlaybackException) {
                 exoPlayer.seekToDefaultPosition() // Restart from the latest position
                 exoPlayer.prepare()

@@ -45,7 +45,6 @@ class ActivityMp4Player : AppCompatActivity() {
 
         updateUI()
         setupPlayer()
-        observeViewModel()
 
         bindingStyle.mbBackPlayerViewStyle.setOnClickListener { finish() }
         bindingStyle.mbRotateScreen.setOnClickListener { onRotateClick() }
@@ -70,12 +69,6 @@ class ActivityMp4Player : AppCompatActivity() {
         binding.playerView.player = viewModel.exoPlayer
         val videoUri = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4".toUri()
         viewModel.setMedia(videoUri)
-    }
-
-    private fun observeViewModel() {
-        viewModel.isBuffering.observe(this) { isBuffering ->
-            binding.progressBar.visibility = if (isBuffering) View.VISIBLE else View.GONE
-        }
     }
 
     private fun onRotateClick() {
