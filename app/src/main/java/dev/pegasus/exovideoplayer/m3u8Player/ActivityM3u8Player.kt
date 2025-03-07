@@ -44,8 +44,7 @@ class ActivityM3u8Player : AppCompatActivity() {
 
     private fun initPlayerM3U8() {
         //val videoUrl = "https://live-hls-web-aje.getaj.net/AJE/index.m3u8"        // LIVE
-        //val videoUrl = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"        // VOD
-        val videoUrl = "https://vod3.cf.dmcdn.net/sec2(aJUNV9wovTRNg7ah9lYgoMkhDA3PxLdlnA_QRQYzONJJKucJDyxKrNel_XE7ItzSPINivPxgRWl5AzrQmAI_Frc7Z2nd-Fv1ALgOonHwbq1tbQnpJVsBILwZPKebR_WEM7iygEpUYxGsRNxI1QmmJlXhv11t4WOaPMbWZmsn6E4)/video/614/142/476241416_mp4_h264_aac.m3u8"          // VOD (Dailymotion)
+        val videoUrl = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"        // VOD
 
         val mediaItem = MediaItem.fromUri(videoUrl)
         exoPlayer.setMediaItem(mediaItem)
